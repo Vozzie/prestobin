@@ -23,7 +23,7 @@ Usage: prestobin myresource.rc resource.h
 * Instead of using the windows resource api there are 3 functions inside prestoapi.h
 See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.h)
 
-######Note: Add this code but change the \_binary\___yourres\_rc\_bin__\_start and \_binary\___yourres\_rc\_bin__\_end 
+######Note: Add this code but change the \_binary\_yourres\_rc\_bin\_start and \_binary\_yourres\_rc\_bin\_end 
 
 See Resources(1) for info on how to obtain the names for `_binary_res_prestobin_rc_bin_start` and `_binary_res_prestobin_rc_bin_end` because these depend on your filename and/or objcopy version.
 
