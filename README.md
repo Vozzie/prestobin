@@ -19,11 +19,14 @@ See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.
 
 ###Steps to use
 
-* Include prestoapi.h in your Pelle's c project.
+* Include prestoapi.h in your project.
 * Use the functions in prestoapi.h to access your resources.
+* Add the offsets to a header file. See _note_
+* Call INIT_RESOURCE() once in your project, before calling any of the resource functions. Best in main.
 * Build a .bin file from your resources with prestobin.exe (or on linux with prestobin)
-* Add the offsets to a header file.
-
+  `prestobin sample.rc sample.h`
+* Build an object file from the .bin file with objcopy. See [makefile](https://github.com/Vozzie/prestobin/blob/master/makefile)
+ 
 ######Note: See Resources(1) for info on how to obtain the names for `_binary_res_prestobin_rc_bin_start` and `_binary_res_prestobin_rc_bin_end` because these depend on your filename and/or objcopy version.
 
 ```C
@@ -36,10 +39,6 @@ char * resource_offset;
 #define INIT_RESOURCE() 
 #endif
 ```
-
-* Call INIT_RESOURCE() once in your project, before calling any of the resource functions. Best in main.
-
-######Note: prestobin itself was made with these steps, see [makefile](https://github.com/Vozzie/prestobin/blob/master/makefile)
 
 
 ###Resources:
