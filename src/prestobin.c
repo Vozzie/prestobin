@@ -44,10 +44,15 @@ int main(int argc, char * argv[])
 			cleanup_workingset(&ws);
 			return 0;
 		}
+		if(get_folders_from_paths(ws.header_file, &ws.header_folder))
+		{
+			print_error(IDS_OUTOFMEMORY);
+			cleanup_workingset(&ws);
+			return 0;
+		}
 	}
 
-	if(get_folders_from_paths(ws.header_file, &ws.header_folder)
-	|| get_folders_from_paths(ws.resource_file , &ws.resource_folder))
+	if(get_folders_from_paths(ws.resource_file , &ws.resource_folder))
 	{
 		print_error(IDS_OUTOFMEMORY);
 		cleanup_workingset(&ws);
@@ -172,7 +177,7 @@ int extract_rcdata(WORKINGSET *pws, char *chrptr, char *rcdata)
 	else item = add_new_item(pws, id, label);
 	if( item == NULL )
 	{
-		print_error(IDS_OUTOFMEMORY);
+		print_error(IDS_INVALID_RCDATAENTRY, origin);
 		return ENOMEM;
 	}
 	data = load_rcdata(pws, rcdata, &length);
@@ -345,6 +350,7 @@ int	get_folders_from_paths(char * psource, char ** pptarget)
 {
 	char *chrptr, oldchr;
 	chrptr = strrchr(psource, '\\');
+	if(!chrptr) chrptr = strrchr(psource, '/');
 	if(chrptr)
 	{
 		*pptarget = malloc((++chrptr - psource) + 1);
@@ -564,10 +570,10 @@ void show_usage(void)
 	if(size == 0) return;
 	buffer = malloc(size + 1);
 	if(buffer == NULL) return;
-	if(!get_resource_value(IDD_USAGE, PREST_RCDATA, buffer, size))
+	if(get_resource_value(IDD_USAGE, PREST_RCDATA, buffer, size))
 	{
 		buffer[size] = 0;
-		printf(buffer);
+		printf("%s", buffer);
 	}
 	free(buffer);
 }

@@ -100,7 +100,7 @@ int get_resource_size(unsigned int id, unsigned int type)
 	HRSRC hResource;
 	hModule = GetModuleHandle(NULL);
 	hResource = FindResource(hModule, MAKEINTRESOURCE(id), MAKEINTRESOURCE(type)); 
-	if(hResource == NULL) return -1;
+	if(hResource == NULL) return 0;
 	return SizeofResource(hModule, hResource);
 }
 
@@ -112,7 +112,7 @@ int get_resource_value(unsigned int id, unsigned int type, char * buffer, unsign
 	LPVOID lpLock;
 	unsigned int total;
 	total = get_resource_size(id, type);
-	if(total == -1 || size < total) return EINVAL;
+	if(total == -1 || size < total) return 0;
 	hModule = GetModuleHandle(NULL);
 	hResource = FindResource(hModule, MAKEINTRESOURCE(id), MAKEINTRESOURCE(type));
 	if(hResource != NULL)
@@ -124,13 +124,13 @@ int get_resource_value(unsigned int id, unsigned int type, char * buffer, unsign
 			if(lpLock != NULL && buffer != NULL)
 			{
 				memcpy(buffer, lpLock, size);
-				return 0;
+				return total;
 			}
 			if(lpLock != NULL) UnlockResource(lpLock);
 		}
 		if(hGlobal != NULL) FreeResource(hGlobal);
 	}
-	return EINVAL;
+	return 0;
 }
 
 #endif

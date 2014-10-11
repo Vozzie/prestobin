@@ -16,10 +16,10 @@
 #include "resource.h"
 
 #ifdef PRESTOBINAPI
-extern char _binary_res_prestobin_rc_start;
-extern char _binary_res_prestobin_rc_end;
+extern char _binary_res_prestobin_rc_bin_start;
+extern char _binary_res_prestobin_rc_bin_end;
 char * resource_offset;
-#define INIT_RESOURCE() resource_offset = &_binary_res_prestobin_rc_start;
+#define INIT_RESOURCE() resource_offset = &_binary_res_prestobin_rc_bin_start;
 #else
 #define INIT_RESOURCE() 
 #endif
