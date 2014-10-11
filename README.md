@@ -9,7 +9,7 @@ Usage: prestobin myresource.rc resource.h
 
 * Include prestoapi.h in your project.
 * Use the functions in prestoapi.h to access your resources.
-* Add the offsets to a header file. See _note_
+* Add the offsets to a header file. See *note*
 * Call INIT_RESOURCE() once in your project, before calling any of the resource functions. Best in main.
 * Build a .bin file from your resources with prestobin.exe (or on linux with prestobin)
   `prestobin sample.rc sample.h`
@@ -23,7 +23,7 @@ Usage: prestobin myresource.rc resource.h
 * Instead of using the windows resource api there are 3 functions inside prestoapi.h
 See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.h)
 
-######Note: See Resources(1) for info on how to obtain the names for `_binary_res_prestobin_rc_bin_start` and `_binary_res_prestobin_rc_bin_end` because these depend on your filename and/or objcopy version.
+######Note: Add this code but change the `_binary_`___yourres_rc___`_bin_start` and `_binary_`___yourres_rc___`_end` See Resources(1) for info on how to obtain the names for `_binary_res_prestobin_rc_bin_start` and `_binary_res_prestobin_rc_bin_end` because these depend on your filename and/or objcopy version.
 
 ```C
 #ifdef PRESTOBINAPI
@@ -42,4 +42,4 @@ char * resource_offset;
 
 ####Disclaimer
 
-Feel free to use on your _own_ responsibility.
+Feel free to use on your *own* responsibility.
