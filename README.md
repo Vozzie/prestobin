@@ -1,21 +1,9 @@
 prestobin
 =========
 
-
 Convert Pelle's C resources to a binary file that can be used with other compilers.
 
 Usage: prestobin myresource.rc resource.h
-
-
-###Be aware:
-
-* The tool only converts the types RT_RCDATA and RT_STRING.
-
-* Binary resources must be in the same folder of the .rc file.
-
-* Instead of using the windows resource api there are 3 functions inside prestoapi.h
-See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.h)
-
 
 ###Steps to use
 
@@ -27,6 +15,14 @@ See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.
   `prestobin sample.rc sample.h`
 * Build an object file from the .bin file with objcopy. See [makefile](https://github.com/Vozzie/prestobin/blob/master/makefile)
  
+###Be aware
+
+* The tool only converts the types RT_RCDATA and RT_STRING.
+* The tool doesn't support unicode. (maybe later)
+* Binary resources must be in the same folder of the .rc file.
+* Instead of using the windows resource api there are 3 functions inside prestoapi.h
+See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.h)
+
 ######Note: See Resources(1) for info on how to obtain the names for `_binary_res_prestobin_rc_bin_start` and `_binary_res_prestobin_rc_bin_end` because these depend on your filename and/or objcopy version.
 
 ```C
@@ -40,8 +36,10 @@ char * resource_offset;
 #endif
 ```
 
-
-###Resources:
+###Resources
 
 1. http://www.linuxjournal.com/content/embedding-file-executable-aka-hello-world-version-5967
 
+####Disclaimer
+
+Feel free to use on your _own_ responsibility.
