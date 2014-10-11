@@ -1,7 +1,65 @@
+////////////////////////////////////////////////////////////////////////
+//
+// file: prestoapi.h
+//
 #pragma once
 
 #define PREST_STRING  6
 #define PREST_RCDATA  10
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  Function: load_string
+
+  Summary:  Loads a resource string.
+
+  Args:     unsigned int id
+              Resource ID of the string.
+            char * buffer
+              Buffer to receive the string.
+            unsigned int length
+              The length of buffer.
+  Returns:  int
+              Zero on failure, the length of the string excluding the
+              null char on success. The function terminates the 
+              string with a null char.
+--------------------------------------------------------------------*/
+int load_string(unsigned int id, char * buffer, unsigned int length);
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  Function: get_resource_size
+
+  Summary:  Gets the size of resource data.
+
+  Args:     unsigned int id 
+              Resource ID.
+            unsigned int type
+              Resource type (only PREST_RCDATA supported).
+
+  Returns:  int
+              Zero on failure, otherwise the length of the resource.
+--------------------------------------------------------------------*/
+int get_resource_size(unsigned int id, unsigned int type);
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  Function: get_resource_value
+
+  Summary:  Gets the resource data.
+
+  Args:     unsigned int id 
+              Resource ID.
+            unsigned int type
+              Resource type (only PREST_RCDATA supported).
+			char * buffer
+              Buffer to receive the data.
+            unsigned int length
+              The length of buffer.
+
+  Returns:  Zero on failure, the length of the resource on success.
+--------------------------------------------------------------------*/
+int get_resource_value(unsigned int id, unsigned int type, char * buffer, unsigned int length);
+
+// Non user code below.
+////////////////////////////////////////////////////////////////////////
 
 typedef struct {
 	unsigned int version; // 0
