@@ -1,0 +1,4 @@
+prestobin resource generator.
+
+Usage: prestobin resource.h resource.rc
+
