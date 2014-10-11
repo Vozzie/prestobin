@@ -24,6 +24,7 @@ See [prestoapi.h](https://github.com/Vozzie/prestobin/blob/master/inc/prestoapi.
 3. Build a .bin file from your resources with prestobin.exe (or on linux with prestobin)
 4. Add the offsets to a header file. See below (change names of the 2 extern char variables, see Resources)
 
+```C
 #ifdef PRESTOBINAPI
 extern char _binary_res_prestobin_rc_bin_start;
 extern char _binary_res_prestobin_rc_bin_end;
@@ -32,6 +33,7 @@ char * resource_offset;
 #else
 #define INIT_RESOURCE() 
 #endif
+```
 
 5. Call INIT_RESOURCE() before in your project one time, before calling any of the resource functions.
 
