@@ -37,7 +37,7 @@ char * resource_offset;
 
 5. Call INIT_RESOURCE() before in your project one time, before calling any of the resource functions.
 
-####Note: prestobin itself was made with these steps
+#####Note: prestobin itself was made with these steps, see [makefile](https://github.com/Vozzie/prestobin/blob/master/makefile)
 
 
 ###Resources:
