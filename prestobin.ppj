@@ -7,7 +7,7 @@ POC_PROJECT_VERSION = 7.00#
 POC_PROJECT_TYPE = 3#
 POC_PROJECT_OUTPUTDIR = output#
 POC_PROJECT_RESULTDIR = output#
-POC_PROJECT_ARGUMENTS = #
+POC_PROJECT_ARGUMENTS = C:\Users\SoftVibe\Desktop\GIT\prestobin\prestobin\res\prestobin.rc C:\Users\SoftVibe\Desktop\GIT\prestobin\prestobin\inc\resource.h#
 POC_PROJECT_WORKPATH = .#
 POC_PROJECT_EXECUTOR = #
 CC = pocc.exe#
@@ -15,10 +15,10 @@ AS = poasm.exe#
 RC = porc.exe#
 LINK = polink.exe#
 SIGN = posign.exe#
-CCFLAGS = -std:C11 -Tx86-coff -Ot -Ob1 -fp:precise -W1 -Gd -Ze -Go #
+CCFLAGS = -std:C11 -Tx86-coff -Zi -Ot -Ob1 -fp:precise -W1 -Gd -Ze -Go #
 ASFLAGS = -AIA32 -Gd #
 RCFLAGS = #
-LINKFLAGS = -subsystem:console -machine:x86 kernel32.lib user32.lib advapi32.lib delayimp.lib#
+LINKFLAGS = -debug -debugtype:both -subsystem:console -machine:x86 kernel32.lib user32.lib advapi32.lib delayimp.lib#
 SIGNFLAGS = -timeurl:http://timestamp.verisign.com/scripts/timstamp.dll -location:CU -store:MY -errkill#
 INCLUDE = $(PellesCDir)\Include\Win;$(PellesCDir)\Include;inc#
 LIB = $(PellesCDir)\Lib\Win;$(PellesCDir)\Lib#
@@ -50,6 +50,6 @@ output\prestobin.obj: \
 	inc\resource.h
 	$(CC) $(CCFLAGS) "$!" -Fo"$@"
 
-.EXCLUDEDFILES:
-
 .SILENT:
+
+.EXCLUDEDFILES:

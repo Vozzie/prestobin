@@ -1,53 +1,21 @@
 
 #include "prestobin.h"
 
-#define PRESTOBINAPI
-
-#ifdef PRESTOBINAPI
-
-char _binary_prestobin_rc_start;
-char _binary_prestobin_rc_end;
-
-char * resource_offset = &_binary_prestobin_rc_start;
-
-#endif
-
-void test(void)
-{
-	char buffer[1024];
-	int length;
-#ifdef PRESTOBINAPI
-	FILE * file;
-	long size;
-	file = fopen("res\\prestobin_rc.bin", "rb");
-	fseek(file, 0, SEEK_END);
-	size = ftell(file);
-	fseek(file, 0, SEEK_SET);
-	resource_offset = malloc(size);
-	fread(resource_offset, 1, size, file);
-	fclose(file);
-#endif
-	length = get_resource_size(IDD_USAGE, PREST_RCDATA);
-	length = get_resource_value(IDD_USAGE, PREST_RCDATA, buffer, length);
-	length = load_string(IDS_INVALID_ARGUMENT, buffer, 5);
-	length = load_string(IDS_INVALID_ARGUMENT, buffer, 1024);
-}
 
 int main(int argc, char * argv[])
 {
 	WORKINGSET ws;
 	char * extension;
 	int result;
-
-	test();
+	int i;
+	INIT_RESOURCE();
 	if(argc <= 1)
 	{
 		show_usage();
 		return 0;
 	}
-
 	memset(&ws, 0, sizeof(WORKINGSET));
-	for(int i = 1; i < argc; i++)
+	for(i = 1; i < argc; i++)
 	{		
 		extension = strrchr(argv[i], '.');
 		if(extension != NULL) 
@@ -291,7 +259,7 @@ int generate_resource_bin(PWORKINGSET pws)
 	PRESOURCEHEADER header;
 	PRESOURCELIST list;
 	RESOURCE resource;
-	struct _stat st;
+	struct stat st;
 	char *filename, *chrptr;
 	FILE *file;
 	int length;
@@ -307,7 +275,7 @@ int generate_resource_bin(PWORKINGSET pws)
 	chrptr = filename + length - 1;
 	while(*chrptr && *chrptr != '\\'&& *chrptr != '/') { if(*chrptr == '.') *chrptr = '_'; chrptr--; }
 	strcat(filename, ".bin");
-	if(_stat(filename, &st))
+	if(stat(filename, &st))
 	{
 		// exists
 	}
@@ -526,7 +494,7 @@ void print_output(WORKINGSET *pws, unsigned int id, ...)
 	}
 	else
 	{		
-		fprintf(stderr, "Can't load resource string in print_error().");
+		fprintf(stderr, "Can't load resource string in print_error().\n");
 		exit(-1);
 	}
 }
